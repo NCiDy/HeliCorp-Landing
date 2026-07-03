@@ -48,7 +48,7 @@ export default function Footer() {
                             src="/images/helicorp-logo-white.webp"
                             alt="HELICORP"
                             width={160}
-                            height={40}
+                            height={26}
                         />
                     </Link>
                     <div className="flex items-center gap-4">
