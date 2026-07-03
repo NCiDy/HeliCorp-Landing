@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HELICORP | Landing Page – PETKIT YumShare Dual-Hopper (Gemini)
 
-## Getting Started
+Landing Page giới thiệu sản phẩm **Máy cho thú cưng ăn tự động có Camera – PETKIT YumShare Dual-Hopper (Gemini)**, thực hiện cho bài test Vòng 2 – Thực tập sinh IT Phát triển Website của HELICORP.
 
-First, run the development server:
+🔗 **Demo trực tiếp:** https://helicorp-petkityumshare.vercel.app/
+
+---
+
+## 📌 Giới thiệu
+
+Trang landing page giới thiệu đầy đủ về sản phẩm PETKIT YumShare Dual-Hopper: tính năng nổi bật, thông số kỹ thuật, hướng dẫn sử dụng và form đăng ký nhận tư vấn. Giao diện được thiết kế hiện đại, tối ưu trải nghiệm trên cả Desktop và Mobile.
+
+## 🛠️ Công nghệ sử dụng
+
+- **Framework:** Next.js (React)
+- **Styling:** Tailwind CSS
+- **Deploy:** Vercel
+- **Quản lý mã nguồn:** Git & GitHub
+
+## ✨ Tính năng chính
+
+- **Hero Section:** Giới thiệu tổng quan sản phẩm với hình ảnh nổi bật và call-to-action.
+- **Tính năng nổi bật:** Trình bày 4 tính năng chính của sản phẩm (Camera giám sát 1080P, 2 ngăn chứa độc lập, đàm thoại 2 chiều, khóa 3 lớp giữ tươi) theo dạng section hiện đại.
+- **Thông số kỹ thuật:** Bảng thông số chi tiết (camera, dung tích, kết nối, nguồn điện, kích thước, trọng lượng, chất liệu).
+- **Hướng dẫn sử dụng:** Video hướng dẫn sử dụng và hướng dẫn vệ sinh sản phẩm.
+- **Form đăng ký nhận tư vấn:** Thu thập thông tin khách hàng (họ tên, email, số điện thoại) để tư vấn sản phẩm.
+- **Responsive Design:** Hiển thị mượt mà, không lỗi vỡ khung trên cả Desktop và Mobile.
+
+## ⚡ Hiệu năng & SEO
+
+- Tối ưu hình ảnh và mã nguồn, đạt điểm **Google PageSpeed Insights (Mobile): 98 điểm Hiệu suất (Performance), 96 điểm Hỗ trợ tiếp cận (Accessibility), 100 điểm Phương án hay nhất (Best Practices) và 100 điểm SEO**.
+- Cấu hình đầy đủ thẻ Meta cơ bản: Title, Description, Open Graph, Twitter Card.
+
+📸 Ảnh chụp điểm PageSpeed Insights: https://drive.google.com/file/d/1Bth2lNiD4rqTMp5yS180UxmiTKKyAL0M/view?usp=sharing
+
+## 🚀 Cài đặt & chạy dự án local
 
 ```bash
+# Clone repository
+git clone https://github.com/NCiDy/HeliCorp-Landing.git
+
+# Cài đặt dependencies
+npm install
+
+# Chạy môi trường development
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Truy cập `http://localhost:3000` để xem kết quả.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Cấu trúc dự án
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── public/
+│   ├── images/          # Hình ảnh sản phẩm
+│   └── videos/          # Video hướng dẫn sử dụng, vệ sinh
+├── src/
+│   ├── app/
+│   │   ├── page.tsx      # Trang landing page chính
+│   │   └── layout.tsx    # Layout gốc, chứa metadata (Title, Description, Open Graph...)
+│   └── components/       # Các component (Hero, Features, Specs, Newsletter Form, Header, Footer...)
+├── package.json
+└── README.md
+```
 
-## Learn More
+## 🌐 Triển khai (Deployment)
 
-To learn more about Next.js, take a look at the following resources:
+Dự án được deploy trên **Vercel**: https://helicorp-petkityumshare.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👤 Tác giả
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Họ và tên:** Nguyễn Công Dũng
+- **Vị trí ứng tuyển:** Thực tập sinh IT Phát triển Website – HELICORP
+- **Email:** congdung1409@gmail.com
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Sản phẩm được thực hiện trong khuôn khổ bài test tuyển dụng của Healthy Living Corporation (HELICORP).*
