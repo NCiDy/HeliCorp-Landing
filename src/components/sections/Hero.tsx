@@ -23,7 +23,7 @@ export default function Hero() {
                 className="absolute inset-0"
             >
                 <Image
-                    src="/images/petkit_hero2.jpg"
+                    src="/images/petkit_hero2.webp"
                     alt="Máy cho thú cưng ăn tự động có camera PETKIT YumShare Dual-Hopper Gemini"
                     fill
                     priority
