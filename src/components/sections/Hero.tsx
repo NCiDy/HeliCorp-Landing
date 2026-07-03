@@ -7,70 +7,82 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function Hero() {
     const { scrollY } = useScroll();
 
-    // 🎯 SCROLL PROGRESS HERO
-    const yImage = useTransform(scrollY, [0, 600], [0, 120]);
-    const scaleImage = useTransform(scrollY, [0, 600], [1, 1.15]);
+    // Background di chuyển chậm hơn khi cuộn
+    const backgroundY = useTransform(scrollY, [0, 800], [0, 150]);
 
-    const yContent = useTransform(scrollY, [0, 400], [0, -120]);
-    const opacityContent = useTransform(scrollY, [0, 300], [1, 0]);
-
-    const scaleContent = useTransform(scrollY, [0, 600], [1, 0.85]);
+    // Nội dung dịch lên nhẹ và mờ dần
+    const contentY = useTransform(scrollY, [0, 500], [0, -80]);
+    const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
     return (
         <section id="top" className="relative w-full h-screen overflow-hidden">
 
-            {/* BACKGROUND (parallax + zoom nhẹ) */}
+            {/* Background Parallax */}
             <motion.div
-                style={{
-                    y: yImage,
-                    scale: scaleImage
-                }}
+                style={{ y: backgroundY }}
                 className="absolute inset-0"
             >
                 <Image
                     src="/images/petkit_hero2.webp"
-                    alt="PETKIT"
+                    alt="Máy cho thú cưng ăn tự động có camera PETKIT YumShare Dual-Hopper Gemini"
                     fill
                     priority
-                    className="object-cover object-[63%_center]"
+                    sizes="100vw"
+                    className="object-cover object-[63%_center] md:object-[82%_center] scale-100"
                 />
             </motion.div>
 
-            {/* OVERLAY */}
+            {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-            {/* CONTENT (biến mất theo scroll) */}
+            {/* Content */}
             <motion.div
                 style={{
-                    y: yContent,
-                    opacity: opacityContent,
-                    scale: scaleContent
+                    y: contentY,
+                    opacity: contentOpacity,
                 }}
-                className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-white"
+                className="relative z-10 h-full flex flex-col justify-start md:justify-center items-start px-6 md:px-20 pt-15 md:pt-0 text-white"
             >
-                <h1 className="text-3xl md:text-5xl font-bold max-w-4xl">
-                    Máy cho thú cưng ăn có Camera PETKIT YumShare Dual-Hopper
-                </h1>
+                <motion.h1
+                    initial={{ opacity: 0, x: -60 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1 }}
+                    className="text-3xl md:text-5xl font-bold max-w-4xl"
+                    style={{ textShadow: "0 4px 20px rgba(0,0,0,.6)" }}
+                >
+                    Máy cho thú cưng ăn có Camera PETKIT YumShare Dual-Hopper (Gemini)
+                </motion.h1>
 
-                <p className="mt-4 text-lg md:text-2xl text-gray-200 max-w-md">
-                    Chăm sóc toàn diện, quan sát mọi lúc.
-                </p>
+                <motion.p
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    className="mt-4 text-lg md:text-2xl lg:text-2xl max-w-md text-gray-200"
+                    style={{ textShadow: "0 10px 20px rgba(0,0,0,.6)" }}
+                >
+                    Chăm sóc toàn diện, quan sát mọi lúc - An tâm cho Sen, no đủ cho Boss.
+                </motion.p>
 
-                <div className="mt-6 flex gap-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 1 }}
+                    className="mt-auto mb-6 flex justify-center gap-4 self-center md:self-start md:mt-6 md:mb-0"
+                >
                     <Link
                         href="#newsletter"
-                        className="px-6 py-3 bg-white text-black rounded-xl"
+                        className="px-6 py-3 bg-white text-black rounded-xl hover:scale-105 transition"
                     >
-                        Đăng ký
+                        Đăng ký nhận tin
                     </Link>
 
                     <Link
                         href="#features"
-                        className="px-6 py-3 border border-white rounded-xl"
+                        className="px-6 py-3 border border-white rounded-xl hover:scale-105 transition"
                     >
-                        Xem tiếp
+                        Chi tiết
                     </Link>
-                </div>
+                </motion.div>
             </motion.div>
         </section>
     );
