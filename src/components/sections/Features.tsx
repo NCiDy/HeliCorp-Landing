@@ -9,34 +9,34 @@ const features = [
         description:
             "Quan sát thú cưng mọi lúc mọi nơi với camera góc rộng 140°, hình ảnh sắc nét ngay cả khi ban đêm nhờ hồng ngoại tích hợp.",
         image: "/images/feature_camera.webp",
-        bg: "bg-[#FFE8D6]", // cam đào nhạt
+        bg: "bg-[#FFE8D6]",
     },
     {
         title: "2 Ngăn chứa độc lập",
         description:
             "Chia khẩu phần riêng biệt cho 2 bé hoặc 2 loại thức ăn khác nhau, tổng dung tích lên đến 5 lít, không lo hết đồ ăn khi vắng nhà.",
         image: "/images/feature_hopper.webp",
-        bg: "bg-[#DCEEFB]", // xanh dương nhạt
+        bg: "bg-[#DCEEFB]",
     },
     {
         title: "Đàm thoại 2 chiều",
         description:
             "Gọi điện, trò chuyện và an ủi thú cưng từ xa qua loa và mic tích hợp ngay trên app điện thoại.",
         image: "/images/feature_call.webp",
-        bg: "bg-[#E8E4F9]", // tím nhạt
+        bg: "bg-[#E8E4F9]",
     },
     {
         title: "Khóa 3 lớp giữ tươi",
         description:
             "Thiết kế nắp khóa kín 3 lớp chống ẩm, giữ hạt luôn khô giòn, thơm ngon như mới trong suốt thời gian sử dụng.",
         image: "/images/feature_lock.webp",
-        bg: "bg-[#DFF3E3]", // xanh lá nhạt
+        bg: "bg-[#DFF3E3]",
     },
 ];
 
 export default function Features() {
     return (
-        <section id="features" className="py-20 px-6 md:px-20">
+        <section id="features" className="py-20 px-6 md:px-20 dark:bg-neutral-800">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
                 Tính năng nổi bật
             </h2>

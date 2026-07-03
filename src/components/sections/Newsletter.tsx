@@ -99,13 +99,13 @@ export default function Newsletter() {
     }, []);
 
     return (
-        <section id="newsletter" className="py-20 px-6 md:px-20 bg-black">
+        <section id="newsletter" className="py-20 px-6 md:px-20 bg-white dark:bg-neutral-800">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-14">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-orange-500">
                         Đăng ký nhận tư vấn
                     </h2>
-                    <p className="text-white max-w-3xl mx-auto">
+                    <p className="dark:text-white text-orange-500 max-w-3xl mx-auto">
                         Để lại thông tin, đội ngũ PETKIT sẽ liên hệ tư vấn sản phẩm phù hợp nhất cho bé cưng của bạn
                     </p>
                 </div>

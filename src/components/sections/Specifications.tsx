@@ -6,9 +6,9 @@ const specs = [
     { label: "Kết nối", value: "WiFi 2.4GHz qua App PETKIT" },
     { label: "Đàm thoại", value: "2 chiều, tích hợp mic & loa" },
     { label: "Nguồn điện", value: "Adapter 6V hoặc 4 pin Alkaline D (dự phòng)" },
-    { label: "Kích thước", value: "31 x 29.6 x 25 cm" },
-    { label: "Trọng lượng", value: "~2.5 kg" },
+    { label: "Kích thước hạt:", value: "Hạt dưới 12mm, Thực phẩm khô dưới 9 mm" },
     { label: "Chất liệu", value: "Nhựa ABS cao cấp, khóa 3 lớp chống ẩm" },
+    { label: "Tiện ích", value: "Thiết kế chống tắt nghẽn \nNút khóa thông minh tránh tác động \nLinh kiện có thể tháo rời..." },
 ];
 
 const guides = [
@@ -27,8 +27,8 @@ const guides = [
 ]
 export default function Specifications() {
     return (
-        <section id="specifications" className="py-20 px-6 md:px-20 bg-gray-50">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-blue-400">
+        <section id="specifications" className="py-20 px-6 md:px-20 bg-gray-50 dark:bg-black">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-gray-500 dark:text-white">
                 Thông số kỹ thuật
             </h2>
 
@@ -55,17 +55,17 @@ export default function Specifications() {
                         {specs.map((row, index) => (
                             <tr
                                 key={row.label}
-                                className={`border-b border-gray-200 ${
-                                    index % 2 === 1 ? "bg-white/60" : ""
+                                className={`border-b border-gray-200 dark:bg-black-500 ${
+                                    index % 2 === 1 ? "bg-white/60 dark:bg-black" : ""
                                 }`}
                             >
                                 <th
                                     scope="row"
-                                    className="text-left py-4 px-3 font-medium text-gray-500 w-1/3 align-top"
+                                    className="text-left py-4 px-3 font-medium text-gray-500 dark:text-white w-1/3 align-top"
                                 >
                                     {row.label}
                                 </th>
-                                <td className="py-4 px-3 text-gray-900">
+                                <td className="py-4 px-3 text-gray-900 dark:text-white whitespace-pre-wrap">
                                     {row.value}
                                 </td>
                             </tr>

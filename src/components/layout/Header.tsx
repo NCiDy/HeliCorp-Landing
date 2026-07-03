@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "../commom/ThemeToggle";
 
 const navLinks = [
     { label: "Tính năng nổi bật", href: "#features" },
@@ -24,7 +25,7 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-                isScrolled ? "bg-black/90 backdrop-blur-sm shadow-md" : "bg-transparent"
+                isScrolled ? "bg-stone-400 dark:bg-black/90 backdrop-blur-sm shadow-md" : "bg-transparent"
             }`}
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
@@ -53,7 +54,7 @@ export default function Header() {
                         </a>
                     ))}
                 </nav>
-
+                <ThemeToggle/>
                 {/* Button menu - mobile */}
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}

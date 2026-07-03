@@ -38,7 +38,7 @@ function AnimatedDivider() {
 
 export default function Footer() {
     return (
-        <footer className="bg-black text-white">
+        <footer className="bg-stone-400 dark:bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* Logo */}
@@ -79,7 +79,7 @@ export default function Footer() {
                         <ul className="space-y-2">
                             {companyLinks.map((link) => (
                                 <li key={link}>
-                                    <Link href="https://helicorp.vn/about-helicorp/" className="text-gray-300 hover:text-white transition">
+                                    <Link href="https://helicorp.vn/about-helicorp/" className="text-gray-200 hover:text-white transition">
                                         {link}
                                     </Link>
                                 </li>
@@ -90,7 +90,7 @@ export default function Footer() {
                     {/* Hỗ trợ */}
                     <div>
                         <h3 className="font-bold uppercase mb-4">Hỗ trợ</h3>
-                        <ul className="space-y-2 text-gray-300">
+                        <ul className="space-y-2 text-gray-200">
                             <li>
                                 Tư vấn mua hàng:{" "}
                                 <a href="tel:+84862258929" className="hover:text-white transition">
@@ -116,7 +116,7 @@ export default function Footer() {
                     {/* Chi nhánh */}
                     <div>
                         <h3 className="font-bold uppercase mb-4">Chi nhánh</h3>
-                        <div className="text-gray-300 space-y-3">
+                        <div className="text-gray-200 space-y-3">
                             <p>
                                 <strong className="text-white">Trụ sở chính: TP Hồ Chí Minh</strong>
                                 <br />
@@ -164,7 +164,7 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-gray-200">
                         2026 © Bản quyền thuộc về Healthy Living Corporation
                     </p>
                 </div>

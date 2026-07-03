@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import { ThemeProviderWrapper } from "@/components/providers/theme-provider";
 import "./globals.css";
 
 export const metadata:Metadata = {
@@ -17,13 +18,17 @@ export const metadata:Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="vi">
-      <body>{children}</body>
-    </html>
-  );
-}
+      children,
+    }: Readonly<{
+      children: React.ReactNode;
+    }>) {
+      return (
+        <html lang="vi" suppressHydrationWarning>
+          <body>
+            <ThemeProviderWrapper>
+              {children}
+            </ThemeProviderWrapper>
+          </body>
+        </html>
+      );
+    }
