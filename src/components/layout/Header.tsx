@@ -30,22 +30,24 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
 
                 {/* Logo bên trái */}
-                <Link href="/" className="shrink-0">
+                <Link href="#top" className="shrink-0">
                     <Image
                         src="/images/helicorp-logo-white.webp"
                         alt="HELICORP"
-                        width={130}
-                        height={32}
+                        priority
+                        width={160}
+                        height={26}
+                        className = "w-[70px] h-auto md:w-[100px]"
                     />
                 </Link>
 
                 {/* Nav bên phải - desktop */}
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="hidden lg:flex items-center gap-8">
                     {navLinks.map((link) => (
                         <a
                             key={link.href}
                             href={link.href}
-                            className="text-sm text-white/80 hover:text-white transition"
+                            className="text-xs md:text-lg text-white/80 hover:text-white transition"
                         >
                             {link.label}
                         </a>
@@ -57,7 +59,7 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Mở menu điều hướng"
                     aria-expanded={isMenuOpen}
-                    className="md:hidden text-white"
+                    className="lg:hidden text-white"
                 >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         {isMenuOpen ? (
@@ -71,7 +73,7 @@ export default function Header() {
 
             {/* Menu mobile - dropdown */}
             {isMenuOpen && (
-                <nav className="md:hidden bg-black/95 backdrop-blur-sm px-6 py-4 flex flex-col gap-4">
+                <nav className="lg:hidden bg-black/95 backdrop-blur-sm px-6 py-4 flex flex-col gap-4">
                     {navLinks.map((link) => (
                         <a
                             key={link.href}

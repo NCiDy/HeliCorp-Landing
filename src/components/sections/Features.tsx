@@ -69,10 +69,10 @@ export default function Features() {
 
                             {/* Mô tả */}
                             <div className="w-full md:w-1/2">
-                                <h3 className="text-2xl font-semibold text-gray-900">
-                                    {item.title}
+                                <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 text-center">
+                                    <span className="text-amber-600">{item.title}</span>
                                 </h3>
-                                <p className="mt-3 text-gray-700 leading-relaxed">
+                                <p className="mt-3 text-gray-700 leading-relaxed text-lg md:text-xl text-center">
                                     {item.description}
                                 </p>
                             </div>

@@ -15,7 +15,7 @@ export default function Hero() {
     const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
     return (
-        <section className="relative w-full h-screen overflow-hidden">
+        <section id="top" className="relative w-full h-screen overflow-hidden">
 
             {/* Background Parallax */}
             <motion.div
@@ -23,13 +23,12 @@ export default function Hero() {
                 className="absolute inset-0"
             >
                 <Image
-                    src="/images/petkit_hero.jpg"
+                    src="/images/petkit_hero2.jpg"
                     alt="Máy cho thú cưng ăn tự động có camera PETKIT YumShare Dual-Hopper Gemini"
                     fill
                     priority
                     sizes="100vw"
-                    quality={80}
-                    className="object-cover object-[75%_center] md:object-[90%_center] scale-110"
+                    className="object-cover object-[63%_center] md:object-[82%_center] scale-100"
                 />
             </motion.div>
 
@@ -42,7 +41,7 @@ export default function Hero() {
                     y: contentY,
                     opacity: contentOpacity,
                 }}
-                className="relative z-10 h-full flex flex-col justify-start md:justify-center items-start px-6 md:px-20 pt-10 md:pt-0 text-white"
+                className="relative z-10 h-full flex flex-col justify-start md:justify-center items-start px-6 md:px-20 pt-15 md:pt-0 text-white"
             >
                 <motion.h1
                     initial={{ opacity: 0, x: -60 }}
@@ -74,14 +73,14 @@ export default function Hero() {
                         href="#newsletter"
                         className="px-6 py-3 bg-white text-black rounded-xl hover:scale-105 transition"
                     >
-                        Đăng ký nhận tư vấn
+                        Đăng ký nhận tin
                     </Link>
 
                     <Link
                         href="#features"
                         className="px-6 py-3 border border-white rounded-xl hover:scale-105 transition"
                     >
-                        Xem chi tiết
+                        Chi tiết
                     </Link>
                 </motion.div>
             </motion.div>
