@@ -29,7 +29,7 @@ export default function Header() {
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
 
-                {/* Logo bên trái */}
+                {/* Logo */}
                 <Link href="#top" className="shrink-0">
                     <Image
                         src="/images/helicorp-logo-white.webp"
@@ -41,7 +41,7 @@ export default function Header() {
                     />
                 </Link>
 
-                {/* Nav bên phải - desktop */}
+                {/* Nav - desktop */}
                 <nav className="hidden lg:flex items-center gap-8">
                     {navLinks.map((link) => (
                         <a
@@ -54,7 +54,7 @@ export default function Header() {
                     ))}
                 </nav>
 
-                {/* Nút menu - mobile */}
+                {/* Button menu - mobile */}
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Mở menu điều hướng"

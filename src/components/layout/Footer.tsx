@@ -41,7 +41,7 @@ export default function Footer() {
         <footer className="bg-black text-white">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-                {/* Top: Logo + Social icons */}
+                {/* Logo */}
                 <div className="flex items-center justify-between py-6">
                     <Link href="/">
                         <Image
@@ -69,10 +69,9 @@ export default function Footer() {
 
                 <AnimatedDivider />
 
-                {/* Middle: 3 columns */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-10">
 
-                    {/* Cột 1 - Công ty */}
+                    {/* Công ty */}
                     <div>
                         <h3 className="font-bold uppercase mb-4 leading-snug">
                             Công ty cổ phần cuộc sống mạnh khoẻ
@@ -88,7 +87,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Cột 2 - Hỗ trợ */}
+                    {/* Hỗ trợ */}
                     <div>
                         <h3 className="font-bold uppercase mb-4">Hỗ trợ</h3>
                         <ul className="space-y-2 text-gray-300">
@@ -114,7 +113,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Cột 3 - Chi nhánh */}
+                    {/* Chi nhánh */}
                     <div>
                         <h3 className="font-bold uppercase mb-4">Chi nhánh</h3>
                         <div className="text-gray-300 space-y-3">
@@ -138,7 +137,7 @@ export default function Footer() {
 
                 <AnimatedDivider />
 
-                {/* Bottom: brand logos + copyright */}
+                {/* brand logos + copyright */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 py-8">
                     <div className="flex flex-col md:flex-row md:items-center gap-4">
                         <span className="font-bold uppercase text-sm shrink-0">

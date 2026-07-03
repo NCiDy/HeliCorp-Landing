@@ -74,7 +74,7 @@ export default function Newsletter() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-8 items-center">
-                    {/* Form bên trái */}
+                    {/* Form */}
                     <div className="w-full md:w-2/5 bg-white rounded-3xl p-6 md:p-8 shadow-sm">
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div>
@@ -157,7 +157,7 @@ export default function Newsletter() {
                         </form>
                     </div>
 
-                    {/* PETKIT Care+ bên phải */}
+                    {/* PETKIT Care+ */}
                     <motion.div
                         animate={{
                             scale: form.wantsCare ? 1.02 : 1,
