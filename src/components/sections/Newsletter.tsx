@@ -1,8 +1,15 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import {
+    useState,
+    useEffect,
+    type ChangeEvent,
+    type FormEvent,
+} from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { validateLead } from "@/lib/validators";
+import { sendWebhook, trackEvent } from "@/lib/api";
 
 export default function Newsletter() {
     const [form, setForm] = useState({
@@ -11,55 +18,85 @@ export default function Newsletter() {
         phone: "",
         wantsCare: false,
     });
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [errorMsg, setErrorMsg] = useState("");
+
+    const [status, setStatus] = useState<
+        "idle" | "loading" | "success" | "error"
+    >("idle");
+
+    const [error, setError] = useState<string | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
+
         setForm((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
         }));
     };
 
-    const validate = () => {
-        if (!form.name.trim()) return "Vui lòng nhập họ tên";
-        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
-        if (!isEmailValid) return "Email không hợp lệ";
-        if (form.phone && !/^[0-9]{9,11}$/.test(form.phone)) {
-            return "Số điện thoại không hợp lệ";
-        }
-        return "";
-    };
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        const error = validate();
-        if (error) {
-            setErrorMsg(error);
+
+        const errorMsg = validateLead(form);
+
+        if (errorMsg) {
+            setError(errorMsg);
             setStatus("error");
             return;
         }
 
+        setError(null);
         setStatus("loading");
+
         try {
-            const res = await fetch("https://formspree.io/f/mykqnreg", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-                body: JSON.stringify(form),
-            });
-            if (!res.ok) throw new Error("Gửi thất bại");
+            await trackEvent("submit_newsletter");
+            await sendWebhook(form);
+
             setStatus("success");
-            setForm({ name: "", email: "", phone: "", wantsCare: false });
+
+            setForm({
+                name: "",
+                email: "",
+                phone: "",
+                wantsCare: false,
+            });
         } catch (err) {
             console.error(err);
-            setErrorMsg("Có lỗi xảy ra, vui lòng thử lại sau");
+
+            setError("Có lỗi xảy ra, vui lòng thử lại sau");
             setStatus("error");
         }
     };
+
+    useEffect(() => {
+    const tracked = new Set<number>();
+
+    const handleScroll = () => {
+        const percent = Math.floor(
+            (window.scrollY /
+                (document.body.scrollHeight - window.innerHeight)) *
+                100
+        );
+
+        const milestones = [20, 40, 60, 80, 100];
+
+        milestones.forEach((milestone) => {
+            if (percent >= milestone && !tracked.has(milestone)) {
+                tracked.add(milestone);
+
+                trackEvent("scroll", { percent: milestone });
+
+                console.log(`Đã cuộn ${milestone}%`);
+            }
+        });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+        window.removeEventListener("scroll", handleScroll);
+    };
+    }, []);
 
     return (
         <section id="newsletter" className="py-20 px-6 md:px-20 bg-black">
@@ -74,11 +111,13 @@ export default function Newsletter() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-8 items-center">
-                    {/* Form */}
                     <div className="w-full md:w-2/5 bg-white rounded-3xl p-6 md:p-8 shadow-sm">
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-black mb-1">
+                                <label
+                                    htmlFor="name"
+                                    className="block text-sm font-medium text-black mb-1"
+                                >
                                     Họ và tên
                                 </label>
                                 <input
@@ -93,7 +132,10 @@ export default function Newsletter() {
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-black mb-1">
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-black mb-1"
+                                >
                                     Email
                                 </label>
                                 <input
@@ -108,8 +150,14 @@ export default function Newsletter() {
                             </div>
 
                             <div>
-                                <label htmlFor="phone" className="block text-sm font-medium text-black mb-1">
-                                    Số điện thoại <span className="text-gray-400">(không bắt buộc)</span>
+                                <label
+                                    htmlFor="phone"
+                                    className="block text-sm font-medium text-black mb-1"
+                                >
+                                    Số điện thoại{" "}
+                                    <span className="text-gray-400">
+                                        (không bắt buộc)
+                                    </span>
                                 </label>
                                 <input
                                     id="phone"
@@ -131,8 +179,13 @@ export default function Newsletter() {
                                     onChange={handleChange}
                                     className="mt-1 w-5 h-5 accent-orange-500 cursor-pointer"
                                 />
-                                <label htmlFor="wantsCare" className="text-sm text-gray-700 cursor-pointer">
-                                    Tôi quan tâm đến gói dịch vụ <strong>PETKIT Care+</strong> và muốn được tư vấn thêm
+                                <label
+                                    htmlFor="wantsCare"
+                                    className="text-sm text-gray-700 cursor-pointer"
+                                >
+                                    Tôi quan tâm đến gói dịch vụ{" "}
+                                    <strong>PETKIT Care+</strong> và muốn được tư
+                                    vấn thêm
                                 </label>
                             </div>
 
@@ -141,23 +194,31 @@ export default function Newsletter() {
                                 disabled={status === "loading"}
                                 className="w-full py-3 bg-black text-white rounded-xl font-medium hover:scale-[1.02] transition disabled:opacity-50"
                             >
-                                {status === "loading" ? "Đang gửi..." : "Gửi thông tin"}
+                                {status === "loading"
+                                    ? "Đang gửi..."
+                                    : "Gửi thông tin"}
                             </button>
 
-                            {status === "error" && (
-                                <p role="alert" className="text-red-500 text-sm text-center">
-                                    {errorMsg}
+                            {status === "error" && error && (
+                                <p
+                                    role="alert"
+                                    className="text-red-500 text-sm text-center"
+                                >
+                                    {error}
                                 </p>
                             )}
+
                             {status === "success" && (
-                                <p role="status" className="text-green-600 text-sm text-center">
+                                <p
+                                    role="status"
+                                    className="text-green-600 text-sm text-center"
+                                >
                                     Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.
                                 </p>
                             )}
                         </form>
                     </div>
 
-                    {/* PETKIT Care+ */}
                     <motion.div
                         animate={{
                             scale: form.wantsCare ? 1.02 : 1,
@@ -167,27 +228,33 @@ export default function Newsletter() {
                         }}
                         transition={{ duration: 0.3 }}
                         className={`w-full md:w-3/5 rounded-3xl p-6 md:p-8 bg-[#FFF3E0] border-2 ${
-                            form.wantsCare ? "border-orange-400" : "border-transparent"
+                            form.wantsCare
+                                ? "border-orange-400"
+                                : "border-transparent"
                         }`}
                     >
                         <div className="flex items-center gap-2 mb-2">
                             <h3 className="text-xl font-semibold text-gray-900">
                                 PETKIT Care+
                             </h3>
+
                             {form.wantsCare && (
                                 <span className="text-xs font-medium bg-orange-400 text-white px-2 py-1 rounded-full">
                                     Đã chọn tư vấn
                                 </span>
                             )}
                         </div>
+
                         <p className="text-gray-700 mb-4">
-                            Gói dịch vụ mở rộng lưu trữ hình ảnh và video phát lại từ camera,
-                            hoàn toàn không bắt buộc đăng ký để sử dụng sản phẩm PETKIT.
+                            Gói dịch vụ mở rộng lưu trữ hình ảnh và video phát
+                            lại từ camera, hoàn toàn không bắt buộc đăng ký để
+                            sử dụng sản phẩm PETKIT.
                         </p>
+
                         <div className="relative w-full rounded-2xl overflow-hidden bg-white">
                             <Image
                                 src="/images/petkit_care_plus.webp"
-                                alt="Bảng so sánh các gói dịch vụ PETKIT Care Plus: Free, Basic, Premium và Premium Plus"
+                                alt="PETKIT Care+"
                                 width={1000}
                                 height={954}
                                 sizes="(max-width: 768px) 100vw, 60vw"
