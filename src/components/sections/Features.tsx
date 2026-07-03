@@ -1,78 +1,95 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const features = [
     {
         title: "Camera giám sát 1080P",
         description:
-            "Quan sát thú cưng mọi lúc mọi nơi với camera góc rộng 140°, hình ảnh sắc nét ngay cả khi ban đêm nhờ hồng ngoại tích hợp.",
+            "Quan sát thú cưng mọi lúc mọi nơi với camera góc rộng 140°...",
         image: "/images/feature_camera.webp",
-        bg: "bg-[#FFE8D6]", 
+        bg: "#FFE8D6",
     },
     {
         title: "2 Ngăn chứa độc lập",
         description:
-            "Chia khẩu phần riêng biệt cho 2 bé hoặc 2 loại thức ăn khác nhau, tổng dung tích lên đến 5 lít, không lo hết đồ ăn khi vắng nhà.",
+            "Chia khẩu phần riêng biệt cho 2 bé...",
         image: "/images/feature_hopper.webp",
-        bg: "bg-[#DCEEFB]",  
+        bg: "#DCEEFB",
     },
     {
         title: "Đàm thoại 2 chiều",
         description:
-            "Gọi điện, trò chuyện và an ủi thú cưng từ xa qua loa và mic tích hợp ngay trên app điện thoại.",
+            "Gọi điện, trò chuyện từ xa...",
         image: "/images/feature_call.webp",
-        bg: "bg-[#E8E4F9]",  
-    },
-    {
-        title: "Khóa 3 lớp giữ tươi",
-        description:
-            "Thiết kế nắp khóa kín 3 lớp chống ẩm, giữ hạt luôn khô giòn, thơm ngon như mới trong suốt thời gian sử dụng.",
-        image: "/images/feature_lock.webp",
-        bg: "bg-[#DFF3E3]", 
+        bg: "#E8E4F9",
     },
 ];
 
 export default function Features() {
-    return (
-        <section id="features" className="py-20 px-6 md:px-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
-                Tính năng nổi bật
-            </h2>
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end end"],
+    });
 
-            <div className="flex flex-col gap-8 max-w-5xl mx-auto">
+    return (
+        <section ref={ref} className="relative h-[300vh]">
+
+            {/* TITLE STICKY */}
+            <div className="sticky top-20 text-center mb-10 z-10">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                    Tính năng nổi bật
+                </h2>
+            </div>
+
+            {/* FEATURE VIEWER (sticky) */}
+            <div className="sticky top-40 flex justify-center items-center h-[60vh]">
+
                 {features.map((item, index) => {
-                    const isReversed = index % 2 === 1;
+                    const start = index / features.length;
+                    const end = (index + 1) / features.length;
+
+                    const opacity = useTransform(
+                        scrollYProgress,
+                        [start, end],
+                        [0, 1]
+                    );
+
+                    const scale = useTransform(
+                        scrollYProgress,
+                        [start, end],
+                        [0.8, 1]
+                    );
 
                     return (
                         <motion.div
                             key={item.title}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`flex flex-col md:flex-row ${
-                                isReversed ? "md:flex-row-reverse" : ""
-                            } items-center gap-8 rounded-3xl p-8 md:p-10 ${item.bg}`}
+                            style={{
+                                opacity,
+                                scale,
+                                backgroundColor: item.bg,
+                            }}
+                            className="absolute flex flex-col md:flex-row gap-8 p-10 rounded-3xl w-[80%]"
                         >
-                            {/* Ảnh */}
-                            <div className="relative w-full md:w-1/2 aspect-[1] rounded-2xl overflow-hidden">
+                            {/* IMAGE */}
+                            <div className="relative w-full md:w-1/2 aspect-square">
                                 <Image
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover"
+                                    className="object-cover rounded-2xl"
                                 />
                             </div>
 
-                            {/* Mô tả */}
-                            <div className="w-full md:w-1/2">
-                                <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 text-center">
-                                    <span className="text-amber-600">{item.title}</span>
+                            {/* TEXT */}
+                            <div className="w-full md:w-1/2 flex flex-col justify-center">
+                                <h3 className="text-2xl font-semibold">
+                                    {item.title}
                                 </h3>
-                                <p className="mt-3 text-gray-700 leading-relaxed text-lg md:text-xl text-center">
+                                <p className="mt-4 text-gray-700">
                                     {item.description}
                                 </p>
                             </div>
