@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 import { ThemeProviderWrapper } from "@/components/providers/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata:Metadata = {
@@ -18,17 +19,19 @@ export const metadata:Metadata = {
 };
 
 export default function RootLayout({
-      children,
-    }: Readonly<{
-      children: React.ReactNode;
-    }>) {
-      return (
-        <html lang="vi" suppressHydrationWarning>
-          <body>
-            <ThemeProviderWrapper>
-              {children}
-            </ThemeProviderWrapper>
-          </body>
-        </html>
-      );
-    }
+    children,
+  }: Readonly<{
+    children: React.ReactNode;
+  }>) {
+  return (
+    <html lang="vi" suppressHydrationWarning>
+      <body>
+        <ThemeProviderWrapper>
+          {children}
+        </ThemeProviderWrapper>
+        
+        <SpeedInsights />
+      </body>
+    </html>
+  );
+}
