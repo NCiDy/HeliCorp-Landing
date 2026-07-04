@@ -19,11 +19,17 @@ Trang landing page giới thiệu đầy đủ về sản phẩm PETKIT YumShare
 
 ## ✨ Tính năng chính
 
-- **Hero Section:** Giới thiệu tổng quan sản phẩm với hình ảnh nổi bật và call-to-action.
+- **Hero Section:** Giới thiệu tổng quan sản phẩm với hình ảnh nổi bật và call-to-action kết hợp hiệu ứng **Parallax**.
 - **Tính năng nổi bật:** Trình bày 4 tính năng chính của sản phẩm (Camera giám sát 1080P, 2 ngăn chứa độc lập, đàm thoại 2 chiều, khóa 3 lớp giữ tươi) theo dạng section hiện đại.
 - **Thông số kỹ thuật:** Bảng thông số chi tiết (camera, dung tích, kết nối, nguồn điện, kích thước, trọng lượng, chất liệu).
 - **Hướng dẫn sử dụng:** Video hướng dẫn sử dụng và hướng dẫn vệ sinh sản phẩm.
 - **Form đăng ký nhận tư vấn:** Thu thập thông tin khách hàng (họ tên, email, số điện thoại) để tư vấn sản phẩm.
+- **Xác thực dữ liệu & Webhook:** Kiểm tra tính hợp lệ dữ liệu người dùng trước khi gửi về Webhook thực tế và lưu trữ dữ liệu hợp lệ.
+- **Theo dõi hành vi người dùng:** Ghi nhận sự kiện click và scroll, đồng thời hiển thị thông báo theo dõi hành vi người dùng.
+- **Dark Mode:** Hỗ trợ chuyển đổi giữa giao diện sáng và tối, lưu trạng thái giao diện của người dùng.
+- **Scroll Animation:** Áp dụng hiệu ứng chuyển động khi cuộn trang nhằm tăng trải nghiệm người dùng.
+- **Backend & MongoDB:** Tích hợp backend bằng Next.js API Routes kết hợp MongoDB để lưu trữ thông tin khách hàng đăng ký tư vấn.
+- **Chatbot AI:** Tích hợp chatbot trực tuyến sử dụng API **Gemini** và tự động chuyển sang **Groq** khi Gemini không khả dụng.
 - **Responsive Design:** Hiển thị mượt mà, không lỗi vỡ khung trên cả Desktop và Mobile.
 
 ## ⚡ Hiệu năng & SEO
