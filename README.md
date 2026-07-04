@@ -41,7 +41,7 @@ Trang landing page giới thiệu đầy đủ về sản phẩm PETKIT YumShare
 
 ## ⚡ Hiệu năng & SEO
 
-- Tối ưu hình ảnh và mã nguồn, đạt điểm **Google PageSpeed Insights (Mobile): 98 điểm Hiệu suất (Performance), 96 điểm Hỗ trợ tiếp cận (Accessibility), 100 điểm Phương án hay nhất (Best Practices) và 100 điểm SEO**.
+- Tối ưu hình ảnh và mã nguồn, đạt điểm **Google PageSpeed Insights (Mobile): 93 điểm Hiệu suất (Performance), 91 điểm Hỗ trợ tiếp cận (Accessibility), 100 điểm Phương án hay nhất (Best Practices) và 100 điểm SEO**.
 - Cấu hình đầy đủ thẻ Meta cơ bản: Title, Description, Open Graph, Twitter Card.
 
 📸 Ảnh chụp điểm PageSpeed Insights: https://drive.google.com/file/d/1Bth2lNiD4rqTMp5yS180UxmiTKKyAL0M/view?usp=sharing
