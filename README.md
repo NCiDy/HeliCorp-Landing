@@ -12,8 +12,15 @@ Trang landing page giới thiệu đầy đủ về sản phẩm PETKIT YumShare
 
 ## 🛠️ Công nghệ sử dụng
 
-- **Framework:** Next.js (React)
+- **Framework:** Next.js 15 (React 19)
+- **Ngôn ngữ:** TypeScript
 - **Styling:** Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Cơ sở dữ liệu:** MongoDB
+- **AI Chatbot:** Google Gemini API, Groq API (Fallback)
+- **Validation:** Zod
+- **Webhook:** Make.com Webhook
+- **Animation:** Framer Motion
 - **Deploy:** Vercel
 - **Quản lý mã nguồn:** Git & GitHub
 
@@ -58,13 +65,37 @@ Truy cập `http://localhost:3000` để xem kết quả.
 
 ```
 ├── public/
-│   ├── images/          # Hình ảnh sản phẩm
-│   └── videos/          # Video hướng dẫn sử dụng, vệ sinh
+│   ├── images/                 # Hình ảnh sản phẩm
+│   └── videos/                 # Video hướng dẫn sử dụng, vệ sinh
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx      # Trang landing page chính
-│   │   └── layout.tsx    # Layout gốc, chứa metadata (Title, Description, Open Graph...)
-│   └── components/       # Các component (Hero, Features, Specs, Newsletter Form, Header, Footer...)
+│   │   ├── api/
+│   │   │   ├── chat/           # API chatbot (Gemini/Groq)
+│   │   │   ├── track/          # API theo dõi hành vi người dùng
+│   │   │   └── webhook/        # API xử lý webhook
+│   │   ├── page.tsx            # Trang landing page chính
+│   │   └── layout.tsx          # Layout gốc, chứa metadata
+│   │
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Chatbot.tsx
+│   │   │   └── ThemeToggle.tsx
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   └── Footer.tsx
+│   │   ├── sections/
+│   │   │   ├── Hero.tsx
+│   │   │   ├── Features.tsx
+│   │   │   ├── Specifications.tsx
+│   │   │   └── NewsletterForm.tsx
+│   │   └── ...
+│   │
+│   └── lib/
+│       ├── api.ts              # Hàm gọi API
+│       ├── gemini.ts           # Tích hợp Gemini API
+│       ├── groq.ts             # Tích hợp Groq API
+│       ├── mongodb.ts          # Kết nối MongoDB
+│       └── validators.ts       # Kiểm tra dữ liệu đầu vào
 ├── package.json
 └── README.md
 ```
