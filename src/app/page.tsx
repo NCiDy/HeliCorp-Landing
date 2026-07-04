@@ -6,6 +6,7 @@ import Features from "@/components/sections/Features";
 import Specifications from "@/components/sections/Specifications";
 import Newsletter from "@/components/sections/Newsletter";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import Chatbot from "@/components/commom/Chatbot";
 
 export default function Home(){
   return(
@@ -17,6 +18,7 @@ export default function Home(){
       <Features />
       <Specifications />
       <Newsletter />
+      <Chatbot/>
       <ScrollToTop />
     </main>
 
