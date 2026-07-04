@@ -54,22 +54,33 @@ export default function Header() {
                         </a>
                     ))}
                 </nav>
-                <ThemeToggle/>
+                <div className="flex items-center">
+                <div className="mr-3 lg:mr-0">
+                    <ThemeToggle />
+                </div>
                 {/* Button menu - mobile */}
-                <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Mở menu điều hướng"
-                    aria-expanded={isMenuOpen}
-                    className="lg:hidden text-white"
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        {isMenuOpen ? (
-                            <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-                        ) : (
-                            <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-                        )}
-                    </svg>
-                </button>
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label="Mở menu điều hướng"
+                        aria-expanded={isMenuOpen}
+                        className="lg:hidden text-white"
+                    >
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
+                            {isMenuOpen ? (
+                                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
+                            ) : (
+                                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
+                            )}
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             {/* Menu mobile - dropdown */}

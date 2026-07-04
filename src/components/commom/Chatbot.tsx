@@ -121,7 +121,7 @@ export default function Chatbot() {
 
                     <div className="flex border-t">
                         <input
-                            className="flex-1 p-3 outline-none"
+                            className="flex-1 p-3 outline-none text-black"
                             placeholder="Nhập câu hỏi..."
                             value={input}
                             onChange={(e) => setInput(e.target.value)}

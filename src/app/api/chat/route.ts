@@ -7,24 +7,28 @@ export async function POST(req: Request) {
 
   try {
     const reply = await askGemini(message);
-
     return NextResponse.json({ reply });
+
   } catch (error: any) {
-    console.error(error);
+    console.error("Gemini error:", error);
 
-    if (error.status === 429) {
-      const reply = await askGroq(message);
+    const status = error?.status;
 
-      return NextResponse.json({ reply });
+    const isGeminiBad =
+      [401, 403, 429].includes(status) || !status;
+
+    if (isGeminiBad) {
+      try {
+        const reply = await askGroq(message);
+        return NextResponse.json({ reply });
+      } catch (groqError) {
+        console.error("Groq error:", groqError);
+      }
     }
 
     return NextResponse.json(
-      {
-        reply: "Đã xảy ra lỗi.",
-      },
-      {
-        status: 500,
-      }
+      { reply: "Đã xảy ra lỗi." },
+      { status: 500 }
     );
   }
 }

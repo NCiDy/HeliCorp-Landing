@@ -1,38 +1,39 @@
 import { NextResponse } from "next/server";
 import { validateLead } from "@/lib/validators";
 import clientPromise from "@/lib/mongodb";
+import moment from "moment-timezone";
 
 export async function POST(req: Request) {
   try {
-    console.log("🔥 Webhook HIT");
+    console.log("- Webhook:");
 
     const data = await req.json();
-    console.log("📩 Incoming data:", data);
+    console.log("- Incoming data:", data);
 
     const error = validateLead(data);
     if (error) {
-      console.log("❌ Validation error:", error);
+      console.log("- Validation error:", error);
 
       return NextResponse.json({ message: error }, { status: 400 });
     }
 
-    console.log("✅ Validation OK");
+    console.log("- Validation OK");
 
     const client = await clientPromise;
     const db = client.db("heliCorp");
 
-    console.log("🗄️ Connected to MongoDB");
+    console.log("- Connected to MongoDB");
 
-    // 1. tìm customer theo email
+    // Check Email trùng
     let customer = await db.collection("customers").findOne({
       email: data.email,
     });
 
-    console.log("👤 Customer found:", customer);
+    console.log("- Customer found:", customer);
 
-    // 2. nếu chưa có thì tạo mới
+    // Tạo mới dữ liệu người dùng nếu Email không trùng
     if (!customer) {
-      console.log("➕ Creating new customer");
+      console.log("- Creating new customer");
 
       const result = await db.collection("customers").insertOne({
         name: data.name,
@@ -42,21 +43,24 @@ export async function POST(req: Request) {
 
       customer = { _id: result.insertedId };
 
-      console.log("✔️ Customer created:", customer._id);
+      console.log("- Customer created:", customer._id);
     }
 
-    // 3. lưu request
+    
+    // Lưu dữ liệu gửi form
     await db.collection("consult_requests").insertOne({
       customerId: customer._id,
-      time: new Date(),
+      time: moment()
+        .tz("Asia/Ho_Chi_Minh")
+        .format("YYYY-MM-DD HH:mm:ss"),
       petkit: data.wantsCare,
     });
 
-    console.log("📌 Consult request saved");
+    console.log("- Consult request saved");
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.log("💥 Webhook error:", err);
+    console.log("- Webhook error:", err);
 
     return NextResponse.json(
       { success: false },
